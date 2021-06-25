@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    const ROOM_ID = "<%= roomId %>"
+    
+  </script>
+  <script defer src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="../script.js" defer></script>
+  <title>Rooms.io</title>
+  <style>
+    #video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 300px);
+      grid-auto-rows: 300px;
+    }
+    
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <div id="video-grid"></div><br/>
+  <label for="uuid">Join call:</label>
+  <input type="text" id="uuid" name="uuid" placeholder="Enter the call UUID here" />
+  <button id="submit" onclick="const requestedUUID = document.getElementById('uuid').value; window.location.href = '/call/' + requestedUUID">Submit</button>
+</body>
+</html>
