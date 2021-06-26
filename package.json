@@ -1,14 +1,15 @@
 {
-  "name": "zoom-clone",
+  "name": "onach-rooms",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js"
+    "devStart": "nodemon server.js",
+    "peer": "peerjs --port 443"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "GPL-3.0",
   "dependencies": {
     "ejs": "^3.1.3",
     "express": "^4.17.1",
