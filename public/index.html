@@ -10,12 +10,20 @@
     }
   </style>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    const queryString = window.location.search
+    const urlParams = new URLSearchParams(queryString)
+    const source = urlParams.get('source')
+    if(source == "endedCall") {
+      alert("Thank you for using Rooms.io!")
+    }
+  </script>
   <title>Rooms.io</title>
 </head>
 <body>
   <h1>Welcome to rooms.io</h1>
   <p>The privacy-focused, free and open-source VoIP service.</p>
   <button id="newCall" onclick="window.location.href = '/call'">Create call</button><br/><br/>
-  <div style="font-size: smaller">Copyright © JJPMaster; some rights reserved &mdash; see <a href="/licensing">Licensing</a> for more details.</div>
+  <div style="font-size: smaller">Copyright © JJPMaster. Some rights reserved &mdash; see <a href="/licensing.html">Licensing</a> for more details.</div>
 </body>
 </html>
