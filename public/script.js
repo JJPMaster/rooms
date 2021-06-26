@@ -8,10 +8,7 @@ const myPeer = new Peer(undefined, {
 const myVideo = document.createElement('video')
 myVideo.muted = true
 const peers = {}
-navigator.mediaDevices.getUserMedia({
-  video: true,
-  audio: true
-}).then(stream => {
+navigator.mediaDevices.getDisplayMedia.then(stream => {
   addVideoStream(myVideo, stream)
 
   myPeer.on('call', call => {
@@ -54,5 +51,5 @@ function addVideoStream(video, stream) {
     video.play()
   })
   videoGrid.append(video)
-
+}
 
