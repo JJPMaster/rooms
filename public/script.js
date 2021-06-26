@@ -55,3 +55,8 @@ function addVideoStream(video, stream) {
   })
   videoGrid.append(video)
 }
+var display
+document.getElementById("start-screenshare").addEventListener('click', async () => {
+  display = await navigator.mediaDevices.getDisplayMedia().then(stream => addVideoStream(myVideo, stream))
+}
+
