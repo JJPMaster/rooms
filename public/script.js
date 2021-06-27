@@ -13,7 +13,8 @@ navigator.mediaDevices.getUserMedia({
   video: {
     width: { ideal: 1280 },
     height: { ideal: 720 }
-  }).then(stream => {
+  }
+}).then(stream => {
   addVideoStream(myVideo, stream)
 
   myPeer.on('call', call => {
