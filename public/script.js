@@ -62,6 +62,7 @@ $("#start-screenshare").click(function() {
       connectToNewUser(userId, stream)
     })
   })
+  $("#start-screenshare").hide()
 })
 function addVideoStream(video, stream) {
   video.srcObject = stream
