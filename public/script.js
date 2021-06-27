@@ -8,9 +8,13 @@ const myPeer = new Peer(undefined, {
 const myVideo = document.createElement('video')
 myVideo.muted = true
 const peers = {}
-navigator.mediaDevices.getUserMedia({
-  audio: true
-}).then(stream => {
+function getMedia() {
+  navigator.mediaDevices.getUserMedia({
+    audio: true
+  })
+  navigator.mediaDevices.getDisplayMedia()
+}
+getMedia().then(stream => {
   addVideoStream(myVideo, stream)
 
   myPeer.on('call', call => {
