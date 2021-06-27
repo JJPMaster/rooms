@@ -33,8 +33,13 @@
     if(source == "endedCall") {
       alert("Thank you for using Rooms.io!")
     }
-    function showCallTypes() {
-      $("#callTypes").html('<input type="radio" name="hi" /><label for="hi">Hi</label>')
+    $(document).ready(function() {
+      $("#callTypes").hide()
+    })
+    const auto = document.getElementById("auto_id")
+    const custom = document.getElementById("custom_id")
+    if(auto.checked == true) {
+      console.log("checked")
     }
   </script>
   <title>Rooms.io</title>
@@ -42,8 +47,16 @@
 <body>
   <h1>Welcome to rooms.io</h1>
   <p>The privacy-focused, free and open-source VoIP service.</p>
-  <a href="#" class="button" id="newCall" onclick="showCallTypes()">Create call</a>
-  <p id="callTypes"></p>
+  <a href="#" class="button" id="newCall" onclick="$('#callTypes').show()">Create call</a>
+  <div id="callTypes">
+    <form>
+      <input type="radio" name="auto_id" id="auto_id" />
+        <label for="auto_id">Automatically generate a call ID</label>
+      <input type="radio" name="custom_id" id="custom_id" />
+        <label for="custom_id">Allow me to choose a custom call ID</label>
+      <input type="submit" name="submit" id="submit" />
+    </form>
+  </div>
   <div style="font-size: smaller">Copyright © JJPMaster. Some rights reserved &mdash; see <a href="/licensing.html">Licensing</a> for more details.</div>
 </body>
 </html>
