@@ -11,8 +11,8 @@ const peers = {}
 navigator.mediaDevices.getUserMedia({
   audio: true,
   video: {
-    width: { ideal: 1280 },
-    height: { ideal: 720 }
+    width: { min: 1280, ideal: 1280, max: 1280},
+    height: { min: 720, ideal: 720, max: 720 }
   }
 }).then(stream => {
   addVideoStream(myVideo, stream)
