@@ -36,10 +36,12 @@
     $(document).ready(function() {
       $("#callTypes").hide()
     })
-    const auto = document.getElementById("auto_id")
-    const custom = document.getElementById("custom_id")
-    if(auto.checked == true) {
-      console.log("checked")
+    function checkCallType() {
+      const auto = document.getElementById("auto_id")
+      const custom = document.getElementById("custom_id")
+      if(auto.checked == true) {
+        console.log("checked")
+      }
     }
   </script>
   <title>Rooms.io</title>
@@ -54,7 +56,7 @@
         <label for="auto_id">Automatically generate a call ID</label>
       <input type="radio" name="custom_id" id="custom_id" />
         <label for="custom_id">Allow me to choose a custom call ID</label>
-      <input type="submit" name="submit" id="submit" />
+      <p class="button" onclick="checkCallType()">Submit</p>
     </form>
   </div>
   <div style="font-size: smaller">Copyright © JJPMaster. Some rights reserved &mdash; see <a href="/licensing.html">Licensing</a> for more details.</div>
