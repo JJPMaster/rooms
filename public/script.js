@@ -22,6 +22,9 @@ if(method == "screen") {
         addVideoStream(video, userVideoStream)
       })
     })
+    socket.on('user-connected', userId => {
+        connectToNewUser(userId, stream)
+    })
 })
 }
 else {
@@ -38,12 +41,11 @@ else {
           addVideoStream(video, userVideoStream)
         })
       })
-  })
-}
-
-socket.on('user-connected', userId => {
-  connectToNewUser(userId, stream)
+      socket.on('user-connected', userId => {
+        connectToNewUser(userId, stream)
+    })
 })
+}
 
 socket.on('user-disconnected', userId => {
   if (peers[userId]) peers[userId].close()
