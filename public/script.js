@@ -68,22 +68,10 @@ function connectToNewUser(userId, stream) {
   peers[userId] = call
 }
 $("#start-screenshare").click(function() {
-    navigator.mediaDevices.getDisplayMedia().then(stream => {
-      addVideoStream(myVideo, stream)
-      myPeer.on('call', call => {
-      call.answer(stream)
-      const video = document.createElement('video')
-      call.on('stream', userVideoStream => {
-        addVideoStream(video, userVideoStream)
-        socket.emit('join-room', ROOM_ID, 180)
-      })
-    })
-
-    socket.on('user-connected', userId => {
-      connectToNewUser(userId, stream)
-    })
-  })
-  $("#start-screenshare").hide()
+  if(window.confirm("This feature is still currently being developed, and may not be fully functional. Are you sure you want to proceed? \n Known bugs: The screenshare does not automatically appear for the other members of the call, and they must refresh their pages before they will be able to see it.")) {
+    window.open("./?method=screen")
+    $("#start-screenshare").hide()
+  }
 })
 function addVideoStream(video, stream) {
   video.srcObject = stream
