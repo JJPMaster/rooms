@@ -3,6 +3,7 @@
         "allowJs": true,
         "target": "esnext",
         "watch": true,
+        "typeRoots": [ "node_modules/@types" ],
         "noImplicitAny": false
     }
 }
