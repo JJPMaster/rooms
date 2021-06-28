@@ -16,6 +16,7 @@
           window.location.href = "../chromium.html"
         }
       }
+      $("#stop-screenshare").hide()
   })
   </script>
   <script defer src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
@@ -69,8 +70,10 @@
   <form style="text-align: center;">
     <label for="uuid">Join call:</label>
     <input type="text" id="uuid" name="uuid" placeholder="Enter the call UUID here" />
-    <p class="button" id="submit" onclick="const requestedUUID = document.getElementById('uuid').value; window.location.href = '/call/' + requestedUUID">Submit</p><br/>
+    <a href="#" class="button" id="submit" onclick="const requestedUUID = document.getElementById('uuid').value; window.location.href = '/call/' + requestedUUID">Submit</a><br/>
     <a class="button" href='../?source=endedCall'>Leave call</a>
+    <a href="#" class="button" id="start-screenshare">Start screenshare (beta)</a>
+    <a href="#" class="button" id="stop-screenshare">Stop screenshare</a>
   </form>
 </body>
 </html>

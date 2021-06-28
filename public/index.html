@@ -6,7 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
+      color: white;
+      font-family: Helvetica;
       text-align: center;
+      background-color: #202020;
+    }
+    .button {
+      box-shadow: inset 0px 1px 0px 0px #ffffff;
+      background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+      background-color: #f9f9f9;
+      border-radius: 6px;
+      border: 1px solid #dcdcdc;
+      display: inline-block;
+      cursor: pointer;
+      color: #666666;
+      font-family: Arial;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 6px 24px;
+      text-decoration: none;
+      text-shadow: 0px 1px 0px #ffffff;
     }
   </style>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -17,13 +36,42 @@
     if(source == "endedCall") {
       alert("Thank you for using Rooms.io!")
     }
+    $(document).ready(function() {
+      $("#callTypes").hide()
+    })
+    function checkCallType() {
+        var auto = document.getElementById("auto_id")
+        var custom = document.getElementById("custom_id")
+        if(auto.checked == true) {
+          window.location.href = "../call/"
+        }
+        if(custom.checked == true) {
+          var customID = prompt("Please enter the ID you would like to use for this call.")
+          if(customID !== null) {
+            window.location.href = "../call/" + customID
+          }
+          else {
+            alert("I'd appreciate it if you actually ENTERED an ID, but okay! Here's a call with an automatically generated ID.")
+            window.location.href = "../call/"
+          }
+        }
+    }
   </script>
-  <title>Rooms.io</title>
+  <title>Onach Rooms</title>
 </head>
 <body>
-  <h1>Welcome to rooms.io</h1>
+  <h1>Welcome to Onach Rooms</h1>
   <p>The privacy-focused, free and open-source VoIP service.</p>
-  <button id="newCall" onclick="window.location.href = '/call'">Create call</button><br/><br/>
-  <div style="font-size: smaller">Copyright © JJPMaster. Some rights reserved &mdash; see <a href="/licensing.html">Licensing</a> for more details.</div>
+  <a href="#" class="button" id="newCall" onclick="$('#callTypes').show()">Create call</a>
+  <div id="callTypes">
+    <form>
+      <input type="radio" name="id_type" id="auto_id" />
+        <label for="auto_id">Automatically generate a call ID</label>
+      <input type="radio" name="id_type" id="custom_id" />
+        <label for="custom_id">Allow me to choose a custom call ID</label>
+    </form>
+    <div class="button" onclick="checkCallType()">Submit</div>
+  </div>
+  <div style="font-size: smaller">Copyright © Onach Labs. Some rights reserved &mdash; see <a href="/licensing.html">Licensing</a> for more details.</div>
 </body>
 </html>
