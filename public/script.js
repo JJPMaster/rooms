@@ -8,19 +8,40 @@ const myPeer = new Peer(undefined, {
 const myVideo = document.createElement('video')
 myVideo.muted = true
 const peers = {}
-navigator.mediaDevices.getUserMedia({
-  audio: true,
-  video: true
-}).then(stream => {
-  addVideoStream(myVideo, stream)
-
-  myPeer.on('call', call => {
-    call.answer(stream)
-    const video = document.createElement('video')
-    call.on('stream', userVideoStream => {
-      addVideoStream(video, userVideoStream)
+const queryString = window.location.search
+const urlParams = new URLSearchParams(queryString)
+const method = urlParams.get('method')
+if(method == "screen") {
+    navigator.mediaDevices.getDisplayMedia({
+      audio: true
+    }).then(stream => {
+    addVideoStream(myVideo, stream)
+  
+    myPeer.on('call', call => {
+      call.answer(stream)
+      const video = document.createElement('video')
+      call.on('stream', userVideoStream => {
+        addVideoStream(video, userVideoStream)
+      })
     })
+})
+}
+else {
+    navigator.mediaDevices.getUserMedia({
+        audio: true,
+        video: true
+      }).then(stream => {
+      addVideoStream(myVideo, stream)
+    
+      myPeer.on('call', call => {
+        call.answer(stream)
+        const video = document.createElement('video')
+        call.on('stream', userVideoStream => {
+          addVideoStream(video, userVideoStream)
+        })
+      })
   })
+}
 
   socket.on('user-connected', userId => {
     connectToNewUser(userId, stream)
