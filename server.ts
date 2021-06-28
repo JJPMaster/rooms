@@ -7,16 +7,16 @@ const { v4: uuidV4 } = require('uuid')
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
-app.get('/call', (req, res) => {
+app.get('/call', (req: any, res: any) => {
   res.redirect(`/call/${uuidV4()}`)
 })
 
-app.get('/call/:room', (req, res) => {
+app.get('/call/:room', (req: any, res: any) => {
   res.render('room', { roomId: req.params.room })
 })
 
 io.on('connection', socket => {
-  socket.on('join-room', (roomId, userId) => {
+  socket.on('join-room', (roomId: any, userId: any) => {
     socket.join(roomId)
     socket.to(roomId).broadcast.emit('user-connected', userId)
 
