@@ -25,7 +25,11 @@ if(method == "screen") {
     socket.on('user-connected', userId => {
         connectToNewUser(userId, stream)
     })
+    $("#start-screenshare").hide()
 })
+}
+else if (method == "audio") {
+   window.location.href = "https://onach-rooms-audio.herokuapp.com" + window.location.pathname 
 }
 else {
     navigator.mediaDevices.getUserMedia({
