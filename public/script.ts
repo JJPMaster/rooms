@@ -1,5 +1,7 @@
+var ROOM_ID: string;
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
+// @ts-ignore
 const myPeer = new Peer(undefined, {
   host: 'rooms-peerjs.herokuapp.com',
   secure: true,
@@ -12,6 +14,7 @@ const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 const method = urlParams.get('method')
 if(method == "screen") {
+    // @ts-ignore
     navigator.mediaDevices.getDisplayMedia().then(stream => {
     addVideoStream(myVideo, stream)
   
@@ -71,7 +74,7 @@ function connectToNewUser(userId, stream) {
 
   peers[userId] = call
 }
-$("#start-screenshare").click(function() {
+$("#start-screenshare").on('click', function() {
   if(window.confirm("This feature is still currently being developed, and may not be fully functional. Are you sure you want to proceed? \n\nKnown bug: The screenshare does not automatically appear for the other members of the call, and they must refresh their pages before they will be able to see it. \n\nNote: You must allow pop-ups with your browser for this to work.")) {
     window.open("../call/" + ROOM_ID + "?method=screen")
     $("#start-screenshare").hide()
