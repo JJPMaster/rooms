@@ -55,6 +55,7 @@ $("#start-screenshare").click(function() {
       const video = document.createElement('video')
       call.on('stream', userVideoStream => {
         addVideoStream(video, userVideoStream)
+        socket.emit('join-room', ROOM_ID, 180)
       })
     })
 
