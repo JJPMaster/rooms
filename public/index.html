@@ -40,16 +40,16 @@
         var auto = document.getElementById("auto_id")
         var custom = document.getElementById("custom_id")
         if(auto.checked == true) {
-          window.location.href == "../call/"
+          window.location.href = "../call/"
         }
         if(custom.checked == true) {
           var customID = prompt("Please enter the ID you would like to use for this call.")
           if(customID !== null) {
-            window.location.href == "../call/" + customID
+            window.location.href = "../call/" + customID
           }
           else {
             alert("I'd appreciate it if you actually ENTERED an ID, but okay! Here's a call with an automatically generated ID.")
-            window.location.href == "../call/"
+            window.location.href = "../call/"
           }
         }
     }
