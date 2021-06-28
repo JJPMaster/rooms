@@ -1,4 +1,4 @@
-var ROOM_ID: string;
+var ROOM_ID: string
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 // @ts-ignore
@@ -15,17 +15,17 @@ const urlParams = new URLSearchParams(queryString)
 const method = urlParams.get('method')
 if(method == "screen") {
     // @ts-ignore
-    navigator.mediaDevices.getDisplayMedia().then(stream => {
+    navigator.mediaDevices.getDisplayMedia().then((stream: MediaStream) => {
     addVideoStream(myVideo, stream)
   
-    myPeer.on('call', call => {
+    myPeer.on('call', (call: any) => {
       call.answer(stream)
       const video = document.createElement('video')
       call.on('stream', userVideoStream => {
         addVideoStream(video, userVideoStream)
       })
     })
-    socket.on('user-connected', userId => {
+    socket.on('user-connected', (userId: string) => {
         connectToNewUser(userId, stream)
     })
     $("#start-screenshare").hide()
@@ -38,23 +38,23 @@ else {
     navigator.mediaDevices.getUserMedia({
         audio: true,
         video: true
-      }).then(stream => {
+      }).then((stream: MediaStream) => {
       addVideoStream(myVideo, stream)
     
-      myPeer.on('call', call => {
+      myPeer.on('call', (call: any) => {
         call.answer(stream)
         const video = document.createElement('video')
         call.on('stream', userVideoStream => {
           addVideoStream(video, userVideoStream)
         })
       })
-      socket.on('user-connected', userId => {
+      socket.on('user-connected', (userId: string) => {
         connectToNewUser(userId, stream)
     })
 })
 }
 
-socket.on('user-disconnected', userId => {
+socket.on('user-disconnected', (userId: string) => {
   if (peers[userId]) peers[userId].close()
 })
 
@@ -62,7 +62,7 @@ myPeer.on('open', id => {
   socket.emit('join-room', ROOM_ID, id)
 })
 
-function connectToNewUser(userId, stream) {
+function connectToNewUser(userId: string, stream: MediaStream) {
   const call = myPeer.call(userId, stream)
   const video = document.createElement('video')
   call.on('stream', userVideoStream => {
@@ -80,7 +80,7 @@ $("#start-screenshare").on('click', function() {
     $("#start-screenshare").hide()
   }
 })
-function addVideoStream(video, stream) {
+function addVideoStream(video: HTMLVideoElement, stream: MediaStream) {
   video.srcObject = stream
   video.addEventListener('loadedmetadata', () => {
     video.play()
