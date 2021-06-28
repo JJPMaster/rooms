@@ -15,7 +15,7 @@ app.get('/call/:room', (req: any, res: any) => {
   res.render('room', { roomId: req.params.room })
 })
 
-io.on('connection', socket: any => {
+io.on('connection', socket => {
   socket.on('join-room', (roomId: any, userId: any) => {
     socket.join(roomId)
     socket.to(roomId).broadcast.emit('user-connected', userId)
