@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js",
-    "peer": "peerjs --port 443"
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
