@@ -68,8 +68,8 @@ function connectToNewUser(userId, stream) {
   peers[userId] = call
 }
 $("#start-screenshare").click(function() {
-  if(window.confirm("This feature is still currently being developed, and may not be fully functional. Are you sure you want to proceed? \n Known bugs: The screenshare does not automatically appear for the other members of the call, and they must refresh their pages before they will be able to see it.")) {
-    window.open("./?method=screen")
+  if(window.confirm("This feature is still currently being developed, and may not be fully functional. Are you sure you want to proceed? \n\nKnown bug: The screenshare does not automatically appear for the other members of the call, and they must refresh their pages before they will be able to see it. \n\nNote: You must allow pop-ups with your browser for this to work.")) {
+    window.open("../" + ROOM_ID + "?method=screen")
     $("#start-screenshare").hide()
   }
 })
