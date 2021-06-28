@@ -12,9 +12,7 @@ const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 const method = urlParams.get('method')
 if(method == "screen") {
-    navigator.mediaDevices.getDisplayMedia({
-      audio: true
-    }).then(stream => {
+    navigator.mediaDevices.getDisplayMedia().then(stream => {
     addVideoStream(myVideo, stream)
   
     myPeer.on('call', call => {
