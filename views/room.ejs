@@ -7,22 +7,34 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
   <script>
+   /*    
+        @licstart  The following is the entire license notice for the 
+        JavaScript code in this page.
+        Copyright (C) 2021 Onach Labs
+        The JavaScript code in this page is free software: you can
+        redistribute it and/or modify it under the terms of the GNU
+        General Public License (GNU GPL) as published by the Free Software
+        Foundation, either version 3 of the License, or (at your option)
+        any later version.  The code is distributed WITHOUT ANY WARRANTY;
+        without even the implied warranty of MERCHANTABILITY or FITNESS
+        FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+        As additional permission under GNU GPL version 3 section 7, you
+        may distribute non-source (e.g., minimized or compacted) forms of
+        that code without the copy of the GNU GPL normally required by
+        section 4, provided you include this license notice and a URL
+        through which recipients can access the Corresponding Source.   
+        @licend  The above is the entire license notice
+        for the JavaScript code in this page.
+   */
     var ROOM_ID = "<%= roomId %>"
-    var isFirefox = typeof InstallTrigger !== 'undefined'
     $(document).ready(function() {
-      $("#callID").text(window.location.pathname.substring(6))
-      if(isFirefox === true) {
-        if(window.confirm("This service does not support browsers other than Google Chrome or Chromium-based browsers. Click 'OK' to see reasons.")) {
-          window.location.href = "../chromium.html"
-        }
-      }
       $("#stop-screenshare").hide()
   })
   </script>
   <script defer src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
   <script src="/socket.io/socket.io.js" defer></script>
   <script src="../script.js" defer></script>
-  <title>Call - Rooms.io</title>
+  <title>Call - Onach Rooms</title>
   <style>
     body {
       color: white;
@@ -70,10 +82,10 @@
   <form style="text-align: center;">
     <label for="uuid">Join call:</label>
     <input type="text" id="uuid" name="uuid" placeholder="Enter the call UUID here" />
-    <a href="#" class="button" id="submit" onclick="const requestedUUID = document.getElementById('uuid').value; window.location.href = '/call/' + requestedUUID">Submit</a><br/>
-    <a class="button" href='../?source=endedCall'>Leave call</a>
-    <a href="#" class="button" id="start-screenshare">Start screenshare (beta)</a>
-    <a href="#" class="button" id="stop-screenshare">Stop screenshare</a>
+    <p class="button" id="submit" onclick="const requestedUUID = document.getElementById('uuid').value; window.location.href = '/call/' + requestedUUID">Submit</p><br/>
+    <p class="button" onclick="window.location.href = '../?source=endedCall'">Leave call</p>
+    <p class="button" id="start-screenshare">Start screenshare (beta)</p>
+    <p class="button" id="stop-screenshare">Stop screenshare</p>
   </form>
 </body>
 </html>
