@@ -99,9 +99,8 @@
     </form>
     <div class="button" onclick="checkCallType()">Submit</div>
   </div>
-    <input type="text" id="uuid" name="uuid" placeholder="Enter the call UUID here" />
-      <label for="uuid">Join call:</label>
-    <p class="button" id="submit" onclick="const requestedUUID = document.getElementById('uuid').value; window.location.href = '/call/' + requestedUUID">Submit</p>
+  <label for="uuid">Join call: </label><input type="text" id="uuid" name="uuid" placeholder="Enter the call UUID here" />
+  <p class="button" id="submit" onclick="const requestedUUID = document.getElementById('uuid').value; window.location.href = '/call/' + requestedUUID">Submit</p>
   <div style="font-size: smaller">Copyright © Onach Labs. Some rights reserved &mdash; see <a href="/licensing.html">Licensing</a> for more details.</div>
 </body>
 </html>
