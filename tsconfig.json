@@ -5,7 +5,6 @@
         "target": "esnext",
         "noImplicitAny": false,
         "module": "commonjs",
-        "esModuleInterop": true,
-        "watch": true 
+        "esModuleInterop": true
     }
 }
