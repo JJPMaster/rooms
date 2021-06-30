@@ -16,7 +16,6 @@ function makeCallIdWork() {
   return {__html: "<script>$('#callID').text(ROOM_ID)</script>"}
 }
 
-
 export default function room() {
   return (
     <>
