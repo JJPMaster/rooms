@@ -2,7 +2,13 @@ import * as React from 'react'
 
 import * as ReactDOM from "react-dom"
 
-import Sidebar from "../components/Sidebar"
+import jQuery from "jquery"
+//@ts-ignore
+import Sidebar from "./Sidebar.tsx"
+
+import dynamic from "@next-tools/dynamic"
+
+const bootstrap = dynamic( () => import('bootstrap'), { ssr: false } )
 
 const Window = require("window")
 
@@ -12,9 +18,56 @@ const jsdom = require('jsdom')
 
 const $ = require('jquery')(new jsdom.JSDOM().window)
 
+const roomStyle = `
+  body {
+      color: white;
+      font-family: Helvetica;
+      background-color: #202020;
+      text-align: center;
+  }
+  #video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 300px);
+      grid-auto-rows: 300px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+  }
+
+  video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      
+  }
+  .button {
+      box-shadow: inset 0px 1px 0px 0px #ffffff;
+      background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+      background-color: #f9f9f9;
+      border-radius: 6px;
+      border: 1px solid #dcdcdc;
+      display: inline-block;
+      cursor: pointer;
+      color: #666666;
+      font-family: Arial;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 6px 24px;
+      text-decoration: none;
+      text-shadow: 0px 1px 0px #ffffff;
+  }
+  h1, h2 {
+      color: white;
+      font-family: Helvetica;
+      background-color: #202020;
+      text-align: center;
+  }
+`
 function makeCallIdWork() {
   return {__html: "<script>$('#callID').text(ROOM_ID)</script>"}
 }
+
+
 
 export default function room() {
   return (
@@ -53,21 +106,25 @@ export default function room() {
         const ROOM_ID = window.location.pathname.substring(6)
         
         </script>
-        <link rel="stylesheet" href="../room.css" />
+        <style>
+          {roomStyle}
+        </style>
         <title>Call - Onach Rooms</title>
       </head>
-      <body>
+      <body id="theBody" className="main">
         <h1>Call</h1>
         <h2>Call ID: <span dangerouslySetInnerHTML={makeCallIdWork()} id="callID"></span></h2>
         <div id="video-grid"></div><br />
         <form>
-          <label htmlFor="uuid">Join call:</label>
-          <input type="text" id="uuid" name="uuid" placeholder="Enter the call UUID here" />
-          <p className="button" id="submit" onClick="const requestedUUID = document.getElementById('uuid').value; window.location.href = '/call/' + requestedUUID">Submit</p><br />
-          <p className="button" onClick="window.location.href = '../?source=endedCall'">Leave call</p>
+          <label htmlFor="uuid">Join call:&nbsp;</label>
+          <input type="text" id="uuid" name="uuid" placeholder="Enter the call UUID here" /> 
+          <p className="button" id="submit">Submit</p><br />
+          <p className="button" id="leaveCall">Leave call</p><br />
           <p className="button" id="start-screenshare">Start screenshare (beta)</p>
         </form>
+        
       </body>
+      <Sidebar />
     </>
   )
 }
