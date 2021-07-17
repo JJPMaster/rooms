@@ -51,10 +51,13 @@ export default function Sidebar() {
             }
             function Pride() {
                 $("body").css({"background-image": 'url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Nonbinary_flag.svg/1920px-Nonbinary_flag.svg.png")'})
+                $("h1").css({"background-color": "#FCF434", "color": "white"})
+                $("h2").css({"background-color": "#FCF434", "color": "white"})
             }
             document.getElementById("button").addEventListener("click", function() {
                 var dark = document.getElementById("dark")
                 var light = document.getElementById("light")
+                var enby = document.getElementById("enby")
                 if(dark.checked == true) {
                     changeThemeToDark()
                     localStorage.setItem("theme", "Proper")
