@@ -1,7 +1,10 @@
 {
     "compilerOptions": {
+        "jsx": "react",
         "allowJs": true,
         "target": "esnext",
-        "noImplicitAny": false
+        "noImplicitAny": false,
+        "module": "commonjs",
+        "esModuleInterop": true
     }
 }
